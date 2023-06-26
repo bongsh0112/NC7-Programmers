@@ -32,13 +32,13 @@ public class Main {
       }
     }
     
-    for(int i=0; i<N; i++) {
-      for(int j=0; j<N; j++) {
-        if(check[i][j] == false && map[i][j] == 1) { // 방문하지 않았고 아파트가 있는 곳을 골라서
-          aparts = 0; // 아파트의 개수는 0으로 초기화
-          complex++; // 새로운 단지를 찾았으니까 단지 개수는 +1
-          dfs(i, j); // dfs 시작
-          apartsInComplex.add(aparts); // dfs의 결과로 나온 아파트의 개수를 단지 별로 저장
+    for(int i = 0; i < N; i++){
+      for(int j = 0; j < N; j++){
+        aparts = 0;
+        if(map[i][j] == 1 && !check[i][j]){
+          complex++;
+          bfs(i,j);
+          apartsInComplex.add(aparts);
         }
       }
     }
@@ -53,31 +53,31 @@ public class Main {
     
   }
   
-  static void dfs(int x, int y) {
-    check[x][y] = true; // 방문 처리
-    map[x][y] = complex; // 단지 번호로 아파트 이름 mark
-    aparts++; // 단지 별 아파트 개수 + 1
+  static void bfs(int x, int y) {
+    queue.add(new int[]{x, y});
+    check[x][y] = true;
+    map[x][y] = complex;
+    aparts++;
     
-    for(int i=0; i<4; i++) {
-      X = dirX[i] + x;
-      Y = dirY[i] + y;
-      /**
-       * 상하좌우로 체크하기
-       */
+    while (!queue.isEmpty()) {
+      int curX = queue.peek()[0];
+      int curY = queue.peek()[1];
+      queue.poll();
       
-      if((X >= 0 && X < N && Y >= 0 && Y < N) && check[X][Y] == false && map[X][Y] == 1) {
-        /** 조건문 순서대로
-         * X와 Y는 인덱스이므로 0보다 커야하며 맥시멈인 N보다 작아야함.
-         * 상하좌우로 체크하는 도중 check가 true인 곳이 나오면 이미 체크한 곳이므로 false인 경우만 고려해야함
-         * 아파트가 존재하는 곳이어야 함.
-         */
-        check[X][Y] = true; // 방문 처리
-        map[X][Y] = complex; // 방문한 곳은 단지 이름으로 mark
+      for(int i = 0; i < 4; i++){
+        int X = curX + dirX[i];
+        int Y = curY + dirY[i];
         
-        dfs(X, Y); // 체크한 곳을 X, Y로 삼아 다시 dfs 실행
+        if(X >= 0 && Y >= 0 && X < N && Y < N){
+          if(map[X][Y] == 1 && !check[X][Y]){
+            queue.add(new int[]{X,Y});
+            check[X][Y] = true;
+            map[X][Y] = complex;
+            aparts++;
+          }
+        }
       }
     }
-    
   }
   
 }
