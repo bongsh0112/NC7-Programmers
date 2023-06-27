@@ -32,8 +32,8 @@ public class DFS {
       }
     }
     
-    for(int i=0; i<N; i++) {
-      for(int j=0; j<N; j++) {
+    for(int i = 0; i < N; i++) {
+      for(int j = 0; j < N; j++) {
         if(check[i][j] == false && map[i][j] == 1) { // 방문하지 않았고 아파트가 있는 곳을 골라서
           aparts = 0; // 아파트의 개수는 0으로 초기화
           complex++; // 새로운 단지를 찾았으니까 단지 개수는 +1
@@ -58,7 +58,7 @@ public class DFS {
     map[x][y] = complex; // 단지 번호로 아파트 이름 mark
     aparts++; // 단지 별 아파트 개수 + 1
     
-    for(int i=0; i<4; i++) {
+    for(int i = 0; i < 4; i++) {
       X = dirX[i] + x;
       Y = dirY[i] + y;
       /**

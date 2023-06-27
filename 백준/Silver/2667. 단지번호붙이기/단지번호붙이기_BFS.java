@@ -13,7 +13,6 @@ public class Main {
   static List<Integer> apartsInComplex = new ArrayList<>(); // 단지 내 아파트의 개수
   static int[][] map; // 입력받은 지도
   static boolean[][] check;
-  static int X, Y; // 현재 내 좌표
   static Queue<int[]> queue = new LinkedList<>(); // 배열을 원소로 갖는 링크드리스트 선언
   
   public static void main(String[] args) throws IOException {
