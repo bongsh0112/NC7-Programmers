@@ -23,19 +23,20 @@ public class Main {
       target = question[0];
       int l = Integer.parseInt(question[1]);
       int r = Integer.parseInt(question[2]);
-      sumArr = getSumArr();
-      stringBuilder.append(sumArr[r + 1] - sumArr[l] + "\n");
+      String temp = str.substring(l, r + 1);
+      sumArr = getSumArr(temp);
+      stringBuilder.append(sumArr[r - l + 1] - sumArr[0] + "\n");
     }
     
     System.out.println(stringBuilder.toString());
     
   }
   
-  static int[] getSumArr() {
+  static int[] getSumArr(String str) {
     sumArr = new int[str.length() + 1];
     for (int i = 1; i <= str.length(); i++) {
       if (str.charAt(i - 1) == target.charAt(0)) {
-        sumArr[i] = sumArr[i-1] + 1;
+        sumArr[i] = sumArr[i - 1] + 1;
         continue;
       }
       sumArr[i] = sumArr[i - 1];
