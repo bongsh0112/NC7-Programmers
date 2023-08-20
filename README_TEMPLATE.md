@@ -1,6 +1,5 @@
-# Week4
-> 아래의 항목에서 링크당 2문제씩 선택해서 풀어오기! ()안에 있는 문제는 시간나면 해보세요
-- https://www.acmicpc.net/problem/ (BFS, DFS)
+# Week7
+- https://www.acmicpc.net/problem/ 
     - 2606 바이러스
     - 2667 단지번호붙이기
     - 2178 미로 탐색
